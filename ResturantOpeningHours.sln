@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResturantOpenningHours.API", "ResturantOpenningHours.API\ResturantOpenningHours.API.csproj", "{BDAC12D2-6572-4B74-8299-86310F9EAAD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResturantOpenningHours.Model", "ResturantOpenningHours.Model\ResturantOpenningHours.Model.csproj", "{0C0E10CE-188F-4D24-8F4A-8D524B30CE2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDAC12D2-6572-4B74-8299-86310F9EAAD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDAC12D2-6572-4B74-8299-86310F9EAAD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDAC12D2-6572-4B74-8299-86310F9EAAD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDAC12D2-6572-4B74-8299-86310F9EAAD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C0E10CE-188F-4D24-8F4A-8D524B30CE2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C0E10CE-188F-4D24-8F4A-8D524B30CE2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C0E10CE-188F-4D24-8F4A-8D524B30CE2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C0E10CE-188F-4D24-8F4A-8D524B30CE2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D602C0F-CBA2-40DA-BB37-B6005C5A497F}
+	EndGlobalSection
+EndGlobal
