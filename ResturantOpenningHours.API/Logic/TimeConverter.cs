@@ -22,7 +22,6 @@ namespace ResturantOpenningHours.API.Logic
         /// </summary> 
         public OpenningAndClosingHoursResponse Converter(OpenningAndClosingHoursReqest list)
         {
-            // OpenningAndClosingHoursResponse openningAndClosingHoursResponse = new OpenningAndClosingHoursResponse();
 
             var times = new List<Time>();
 
@@ -51,36 +50,8 @@ namespace ResturantOpenningHours.API.Logic
 
         public List<Time> TimeSorteer(List<OpenHourModel> openHourModel, List<OpenHourModel> previousDay, List<OpenHourModel> nextDay, string previousDayAsWord, string nextDayAsWord, string actualDay, List<Time> times)
         {
-            //var times = new List<Time>();
             if (openHourModel == null) return times;
             var allitems = openHourModel.OrderBy(x => x.Value).ToList();
-            // var openhours = openHourModel.OrderBy(x => x.Type).Where(x => x.Type.ToLower() == "open").ToList();
-            // var closehours = openHourModel.OrderBy(x => x.Type).Where(x => x.Type.ToLower() == "close").ToList();
-            //if ((nextDay != null) && (nextDay.Any()))
-            //{
-            //    nextDay = nextDay.OrderBy(x => x.Value).ToList();
-            //}
-
-            //if ((previousDay != null) && (previousDay.Any()))
-            //{
-            //    previousDay = previousDay.OrderBy(x => x.Value).ToList();
-            //}
-            //if (allitems.Count < 1)
-            //{
-            //    return times;
-            //}
-            //if ((nextDay != null) && (nextDay.Any()))
-            //{
-            //    if (allitems.LastOrDefault().Type.ToLower() == "open" && (nextDay.Count > 0 && nextDay.FirstOrDefault().Type.ToLower() == "close"))
-            //    {
-            //        var time = new Time
-            //        {
-            //            OpenTime = UnixTimeStampToShortTimeString(allitems.LastOrDefault().Value),
-            //            CloseTime = string.Format("{0} {1}", nextDayAsWord, UnixTimeStampToShortTimeString(nextDay.FirstOrDefault().Value))
-            //        };
-            //        times.Add(time);
-            //    }
-            //}
             if (openHourModel.Count <= 0)
             {
                 Time time = new Time();
@@ -92,15 +63,12 @@ namespace ResturantOpenningHours.API.Logic
                 Time time = new Time();
                 for (int i = 0; i < openHourModel.Count; i++)
                 {
-                    
                     if (i == 0 && openHourModel[i].Type.ToLower() == "close")
                     {
-                        //time.Day = actualDay;
                         var previousDayTime = times.Where(x => x.Day.Equals(previousDayAsWord)).FirstOrDefault();
                         if (previousDayTime != null)
                         {
                             previousDayTime.CloseTime = UnixTimeStampToShortTimeString(openHourModel[i].Value);
-
                             times[times.FindIndex(ind => ind.Day.Equals(previousDayAsWord))] = previousDayTime;
                         }
                     }
@@ -109,7 +77,6 @@ namespace ResturantOpenningHours.API.Logic
                         if (openHourModel[i].Type.ToLower().Equals("open"))
                         {
                             time.OpenTime = UnixTimeStampToShortTimeString(openHourModel[i].Value);
-
                         }
                         else if (openHourModel[i].Type.ToLower().Equals("close"))
                         {
@@ -121,114 +88,11 @@ namespace ResturantOpenningHours.API.Logic
                 }
 
             }
-            //if (openhours.Count >= 1 && closehours.Count >= 1)
-            //{
-
-            //    //foreach (var openitemhour in openhours)
-            //    //{
-
-            //    //    foreach (var closeitemhour in closehours)
-            //    //    {
-            //    //        if (openitemhour.Value < closeitemhour.Value)
-            //    //        {
-            //    //            var time = new Time
-            //    //            {
-            //    //                OpenTime = UnixTimeStampToShortTimeString(openitemhour.Value),
-            //    //                CloseTime = UnixTimeStampToShortTimeString(closeitemhour.Value)
-            //    //            };
-            //    //            times.Add(time);
-
-
-            //    //            closehours.Remove(closeitemhour);
-            //    //            break;
-            //    //        }
-
-
-            //    //    }
-            //    //}
-
-            //}
-
             return times;
         }
 
-
-        /// <summary>  
-        /// get the time readable timestamp
-        /// </summary> 
-
-        public List<Time> TimeSorteerv1(List<OpenHourModel> openHourModel, List<OpenHourModel> previousDay, List<OpenHourModel> nextDay, string previousDayAsWord, string nextDayAsWord)
-        {
-            var times = new List<Time>();
-            if (openHourModel == null) return times;
-            var allitems = openHourModel.OrderBy(x => x.Value).ToList();
-            var openhours = openHourModel.OrderBy(x => x.Type).Where(x => x.Type.ToLower() == "open").ToList();
-            var closehours = openHourModel.OrderBy(x => x.Type).Where(x => x.Type.ToLower() == "close").ToList();
-            if ((nextDay != null) && (nextDay.Any()))
-            {
-                nextDay = nextDay.OrderBy(x => x.Value).ToList();
-            }
-
-            if ((previousDay != null) && (previousDay.Any()))
-            {
-                previousDay = previousDay.OrderBy(x => x.Value).ToList();
-            }
-            if (allitems.Count < 1)
-            {
-                return times;
-            }
-            if ((nextDay != null) && (nextDay.Any()))
-            {
-                if (allitems.LastOrDefault().Type.ToLower() == "open" && (nextDay.Count > 0 && nextDay.FirstOrDefault().Type.ToLower() == "close"))
-                {
-                    var time = new Time
-                    {
-                        OpenTime = UnixTimeStampToShortTimeString(allitems.LastOrDefault().Value),
-                        CloseTime = string.Format("{0} {1}", nextDayAsWord, UnixTimeStampToShortTimeString(nextDay.FirstOrDefault().Value))
-                    };
-                    times.Add(time);
-                }
-            }
-            if (openhours.Count >= 1 && closehours.Count >= 1)
-            {
-
-                foreach (var openitemhour in openhours)
-                {
-
-                    foreach (var closeitemhour in closehours)
-                    {
-                        if (openitemhour.Value < closeitemhour.Value)
-                        {
-                            var time = new Time
-                            {
-                                OpenTime = UnixTimeStampToShortTimeString(openitemhour.Value),
-                                CloseTime = UnixTimeStampToShortTimeString(closeitemhour.Value)
-                            };
-                            times.Add(time);
-
-
-                            closehours.Remove(closeitemhour);
-                            break;
-                        }
-
-
-                    }
-                }
-
-            }
-
-            return times;
-        }
-        /// <summary>  
-        /// Prints the time stamp for easy read.
-        /// </summary> 
         public string PrintTime(List<Time> timer, string day)
         {
-
-            //if (timer == null || timer.Count < 1) return "Closed";
-            //if (timer.Count == 1) return string.Format("{0} - {1}", timer.First().OpenTime, timer.First().CloseTime);
-            //else
-            //{
             var value = "";
             foreach (var item in timer)
             {
@@ -246,8 +110,6 @@ namespace ResturantOpenningHours.API.Logic
                 }
             }
             return value;
-
-            //}
         }
     }
 
